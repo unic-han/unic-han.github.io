@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f3">
+  <title>오프라인입니다 — 잠깐, 제 소개를 볼래요?</title>
+  <style>
+    :root{--ink:#202820;--muted:#6c776d;--paper:#f5f7f3;--white:#fff;--line:#dfe5dc;--green:#c7f36b;--orange:#ff895e;--blue:#dceaff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button{font:inherit;color:inherit;cursor:pointer}a{color:inherit}.shell{max-width:1040px;margin:auto;padding:28px 28px 70px}.topbar{display:flex;justify-content:space-between;align-items:center;font:12px var(--mono);letter-spacing:.04em;color:var(--muted)}.brand{display:flex;gap:9px;align-items:center}.dot{width:9px;height:9px;border-radius:50%;background:#8bc34a;box-shadow:0 0 0 4px #e4f2d3}.topbar a{text-decoration:none}.hero{margin:54px auto 0;max-width:760px}.browser{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 18px 50px #2435220b}.browserbar{height:45px;border-bottom:1px solid #edf0eb;background:#fbfcfa;display:flex;align-items:center;padding:0 16px;gap:7px}.browserbar i{width:9px;height:9px;border-radius:50%;background:#e7ebe4}.address{font:11px var(--mono);color:#9aa398;background:#f1f4ef;border-radius:6px;padding:6px 10px;margin-left:8px;flex:1}.screen{padding:clamp(28px,7vw,68px);min-height:455px;position:relative}.tag{display:inline-flex;gap:7px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:7px 11px;font:10px var(--mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase}.tag b{color:#7aa63c}.error-icon{width:42px;height:42px;margin:28px 0 17px;color:#647064}.error-icon svg{width:100%;height:100%}h1{font-size:clamp(33px,6vw,56px);line-height:1.05;letter-spacing:-.06em;margin:0;max-width:610px}.lead{color:var(--muted);font-size:15px;line-height:1.75;max-width:470px;margin:18px 0 0}.terminal{margin-top:26px;background:#f4f6f2;border:1px solid #e9ede6;border-radius:9px;padding:13px 15px;font:11px/1.7 var(--mono);color:#72806f}.terminal span{color:#99a491}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.btn{border:0;border-radius:8px;padding:12px 16px;background:var(--green);font-size:13px;font-weight:750;transition:transform .15s,background .15s}.btn:hover{transform:translateY(-2px);background:#b9eb57}.btn.secondary{background:#fff;border:1px solid var(--line)}.footnote{font-size:10px;color:#9aa398;margin-top:16px}.game{margin-top:34px;border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#fbfcfa}.gamehead{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;border-bottom:1px solid #e9ede6;font:10px var(--mono);color:var(--muted)}.gamehead strong{color:var(--ink)}canvas{display:block;width:100%;height:104px;touch-action:manipulation}.gamebottom{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;color:var(--muted);font-size:10px}.score{font:11px var(--mono);color:var(--ink)}.section{max-width:760px;margin:78px auto 0;scroll-margin-top:32px}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:16px;border-bottom:1px solid var(--line);padding-bottom:15px}.eyebrow{font:10px var(--mono);letter-spacing:.09em;color:#819079;text-transform:uppercase}.section h2{font-size:28px;letter-spacing:-.04em;margin:7px 0 0}.sectiondesc{font-size:12px;color:var(--muted);line-height:1.6;margin:0;max-width:300px}.about{display:grid;grid-template-columns:1.05fr .95fr;gap:14px;margin-top:17px}.card{border:1px solid var(--line);border-radius:13px;background:#fff;padding:21px}.card.dark{background:#222b22;color:#f4f8ee;border-color:#222b22}.card h3{font-size:16px;letter-spacing:-.03em;margin:0 0 10px}.card p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}.dark p{color:#c1cbbd}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}.chip{font:10px var(--mono);padding:7px 9px;border-radius:5px;background:#f0f4ec;color:#56634e}.projects{margin-top:26px}.projectbar{display:flex;justify-content:space-between;align-items:center;margin:14px 0}.projectbar p{font-size:11px;color:var(--muted);margin:0}.sorts{display:flex;gap:6px}.sort{border:1px solid var(--line);border-radius:6px;background:transparent;padding:7px 9px;font-size:10px}.sort[aria-pressed=true]{background:#222b22;color:white;border-color:#222b22}.projectlist{display:grid;gap:9px}.project{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:14px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:10px}.project-icon{width:38px;height:38px;border-radius:9px;background:var(--blue);display:grid;place-items:center;font-size:17px}.project:nth-child(2) .project-icon{background:#fce5d9}.project:nth-child(3) .project-icon{background:#e9e4ff}.project h3{font-size:13px;margin:0 0 4px}.project p{font-size:10px;color:var(--muted);margin:0}.year{font:10px var(--mono);color:#899387}.algorithm{margin-top:12px;padding:12px 14px;border-radius:8px;background:#eaf2e2;color:#56634e;font-size:10px;line-height:1.7}.algorithm code{font:10px var(--mono);color:#33442a}.ending{max-width:760px;margin:64px auto 0;border-top:1px solid var(--line);padding-top:17px;display:flex;justify-content:space-between;gap:15px;color:#899387;font:10px var(--mono)}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#202820;color:white;padding:10px 14px;border-radius:7px;font-size:11px;transition:.25s}.toast.show{transform:translate(-50%,0);opacity:1}.hidden{display:none!important}
+    /* Chrome's offline page is deliberately plain: a small dino, error text and code. */
+    body{background:#fff;color:#3c4043;font-family:Arial,Helvetica,sans-serif}
+    .shell{max-width:none;padding:0 22px 50px}
+    .topbar{display:none}
+    .hero{width:min(100%,600px);max-width:600px;margin:clamp(110px,21vh,205px) auto 0}
+    .browser{background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible}
+    .browserbar,.tag,.terminal,.footnote{display:none}
+    .screen{padding:0;min-height:0}
+    .error-icon{display:block;width:44px;height:47px;margin:0 0 18px;color:#5f6368;cursor:pointer;image-rendering:pixelated;background:url("100-offline-sprite.png") -848px -2px no-repeat}
+    .error-icon svg{display:none}
+    h1{font-size:22px;line-height:28px;letter-spacing:0;font-weight:500;color:#202124;margin:0 0 14px}
+    .lead{font-size:14px;line-height:1.6;color:#5f6368;margin:0;max-width:470px}
+    .lead strong{font-weight:600;color:#3c4043}
+    .terminal{display:none}
+    .actions{display:block;margin:14px 0 0}
+    .btn{border:0;border-radius:0;background:transparent!important;color:#1a73e8;padding:0;font-size:13px;font-weight:400;box-shadow:none}
+    .btn:hover{text-decoration:underline;transform:none}
+    .btn.secondary{display:inline-block;margin-left:13px;border:0;color:#5f6368}
+    .game{display:none;position:relative;margin:0 0 18px;border:0;border-radius:0;background:#fff;overflow:visible}
+    .game.active{display:block}
+    .gamehead{display:none}
+    canvas{width:100%;height:150px;touch-action:manipulation}
+    .gamebottom{position:absolute;top:5px;right:0;padding:0;color:#53565a;font:12px var(--mono);letter-spacing:.12em}
+    .gamebottom #gamehint{display:none}
+    .score{font:12px var(--mono);color:#53565a}
+    .section{width:min(100%,760px);max-width:760px;margin:100px auto 0;scroll-margin-top:30px}
+    .ending{display:none;width:min(100%,760px);margin:60px auto 0}
+    body.connected .ending{display:flex}
+    @media(max-width:620px){.shell{padding:0 24px 45px}.hero{margin-top:18vh}.screen{padding:0;min-height:0}.section{margin-top:58px}.about{grid-template-columns:1fr}.sectionhead{align-items:start;flex-direction:column}.sectiondesc{max-width:none}.project{grid-template-columns:38px 1fr auto;gap:10px}.ending{font-size:9px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar"><div class="brand"><span class="dot"></span> PERSONAL SITE / CONNECTION STATUS</div><a href="#about">skip intro ↓</a></header>
+    <main>
+      <section class="hero" aria-label="Chrome 오프라인 화면 패러디">
+        <div class="browser"><div class="browserbar"><i></i><i></i><i></i><div class="address">you-and-the-internet.com / maybe</div></div>
+          <div class="screen">
+            <div class="error-icon" id="dinoStart" role="button" tabindex="0" aria-label="공룡 게임 시작"><svg viewBox="0 0 40 44" fill="#5f6368" aria-hidden="true"><path d="M14 2h16v4h4v16h4v8h-4v4h-8v-4h-4v-4h-4v10h-4v-6h-4v6H6v-8h4V18h4V6h4V2Zm-4 10h4v4h-4v-4Zm16 0h4v4h-4v-4Z"/><path d="M8 38h4v4H8zm8 0h4v4h-4zm12-8h4v4h-4z"/></svg></div>
+            <div class="game" id="game"><canvas id="canvas" aria-label="공룡으로 선인장을 피하는 게임"></canvas><div class="gamebottom"><span id="gamehint">스페이스바를 눌러 플레이하세요</span><span class="score">HI <b>00000</b> &nbsp; <b id="score">00000</b> / 00015</span></div></div>
+            <h1>인터넷에 연결되어 있지 않습니다.</h1>
+            <p class="lead">다음을 시도해 보세요.<br><br>• 네트워크 케이블, 모뎀 및 라우터 확인<br>• Wi-Fi에 다시 연결<br><br>오프라인에서도 볼 수 있는 제 소개를 준비했어요.<br><b>선인장 15개를 연속으로 피해야 프로필이 열립니다. 한 번 부딪히면 0부터 다시!</b></p>
+            <div class="actions"><button class="btn" id="start">스페이스바를 눌러 플레이</button><button class="btn secondary" id="skip">게임 건너뛰기 · 프로필 보기</button></div>
+            <p class="footnote" style="display:block;color:#9aa0a6;font:12px Arial;margin-top:24px">ERR_INTERNET_DISCONNECTED</p>
+          </div>
+        </div>
+      </section>
+      <section class="section hidden" id="about">
+        <div class="sectionhead"><div><div class="eyebrow">CONNECTION RESTORED · 200 OK</div><h2>오, 이제 만났네요.</h2></div><p class="sectiondesc">이 부분은 본인 이야기로 바꿔주세요. 지금은 사이트 동작을 보여주는 예시 프로필이에요.</p></div>
+        <div class="about">
+          <article class="card dark"><h3>안녕하세요, [이름]입니다 👋</h3><p>새로운 걸 궁금해하고, 떠오른 아이디어를 직접 만들어보는 사람입니다. 요즘은 [관심 분야]를 배우며 작은 프로젝트를 쌓고 있어요.</p><div class="chips"><span class="chip">호기심 많음</span><span class="chip">만들면서 배움</span><span class="chip">커피 충전 중</span></div></article>
+          <article class="card"><h3>현재 상태</h3><p>버그를 만나면 일단 이유를 찾아봅니다. 해결하고 나면 그 과정을 다음 프로젝트에 써먹어요. 완벽한 소개는 어렵지만, 만드는 건 계속하고 있습니다.</p><div class="chips"><span class="chip">배우는 중</span><span class="chip">업데이트 예정</span></div></article>
+        </div>
+        <div class="projects"><div class="sectionhead"><div><div class="eyebrow">SELECTED WORK</div><h2>제가 만든 것들</h2></div><p class="sectiondesc">정렬 버튼을 눌러 카드 순서를 바꿔보세요.</p></div>
+          <div class="projectbar"><p>프로젝트 <span id="projectCount">3</span>개 · 정렬 방식: <b id="sortLabel">최신순</b></p><div class="sorts"><button class="sort" data-sort="title" aria-pressed="false">이름순</button><button class="sort" data-sort="year" aria-pressed="true">최신순</button></div></div>
+          <div class="projectlist" id="projectList"></div>
+          <div class="algorithm"><b>알고리즘:</b> 프로젝트 목록을 <code>mergeSort()</code> 병합 정렬로 재배열해요. 이름순과 최신순 버튼에서 같은 정렬 함수를 호출합니다.</div>
+        </div>
+      </section>
+    </main>
+    <footer class="ending"><span>STATUS: VERY MUCH ONLINE</span><span>made with curiosity &amp; questionable internet</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status">연결 복구! 소개를 불러왔어요.</div>
+  <script>
+    // 교체용 예시: 프로젝트 제목, 설명, 연도를 본인 작업으로 수정하세요.
+    const projects=[
+      {title:"작은 아이디어 실험실",description:"떠오른 생각을 웹으로 빠르게 만들어본 기록",year:2026,icon:"🧪"},
+      {title:"오늘의 플레이리스트",description:"기분에 따라 음악을 모아보는 미니 프로젝트",year:2025,icon:"🎧"},
+      {title:"동네 산책 지도",description:"좋아하는 장소를 저장하고 찾아가는 지도",year:2024,icon:"🗺️"}
+    ];
+    function mergeSort(items, compare){
+      if(items.length<2)return items;
+      const middle=Math.floor(items.length/2);
+      const left=mergeSort(items.slice(0,middle),compare);
+      const right=mergeSort(items.slice(middle),compare);
+      const merged=[];let i=0,j=0;
+      while(i<left.length&&j<right.length) merged.push(compare(left[i],right[j])<=0?left[i++]:right[j++]);
+      return merged.concat(left.slice(i),right.slice(j));
+    }
+    const list=document.querySelector('#projectList');let sortMode='year';
+    function renderProjects(){
+      const ordered=mergeSort([...projects],sortMode==='title'?(a,b)=>a.title.localeCompare(b.title,'ko'):(a,b)=>b.year-a.year);
+      list.innerHTML=ordered.map(p=>`<article class="project"><div class="project-icon" aria-hidden="true">${p.icon}</div><div><h3>${p.title}</h3><p>${p.description}</p></div><span class="year">${p.year}</span></article>`).join('');
+      document.querySelector('#sortLabel').textContent=sortMode==='title'?'이름순':'최신순';
+      document.querySelectorAll('.sort').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.sort===sortMode)));
+    }
+    document.querySelectorAll('.sort').forEach(button=>button.addEventListener('click',()=>{sortMode=button.dataset.sort;renderProjects()}));renderProjects();
+    const canvas=document.querySelector('#canvas'),ctx=canvas.getContext('2d'),scoreEl=document.querySelector('#score'),hint=document.querySelector('#gamehint'),game=document.querySelector('#game');
+    const spriteSheet=new Image();let spriteReady=false;
+    spriteSheet.onload=()=>{spriteReady=true;draw()};spriteSheet.src='100-offline-sprite.png';
+    const TARGET_SCORE=15;
+    let running=false,gameOver=false,frame=0,nextObstacleFrame=90,score=0,playerY=0,velocity=0,obstacles=[],clouds=[],raf=0;
+    const virtualWidth=600,virtualHeight=150;
+    function resize(){const dpr=window.devicePixelRatio||1,rect=canvas.getBoundingClientRect();canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;const scale=rect.width/virtualWidth;ctx.setTransform(dpr*scale,0,0,dpr*scale,0,0);draw()}
+    function blit(sx,sy,sw,sh,dx,dy,dw=sw,dh=sh){if(spriteReady)ctx.drawImage(spriteSheet,sx,sy,sw,sh,dx,dy,dw,dh)}
+    function draw(){if(!canvas.clientWidth)return;const ground=140;ctx.clearRect(0,0,virtualWidth,virtualHeight);if(spriteReady){clouds.forEach(c=>blit(86,2,46,14,c.x,c.y));blit(2,54,600,12,0,127);const trexFrame=gameOver?220:(running?(Math.floor(frame/5)%2?88:132):(Math.floor(Date.now()/700)%2?44:0));blit(848+trexFrame,2,44,47,50,ground-47-playerY);obstacles.forEach(o=>blit(o.large?332:228,2,o.large?25:17,o.large?50:35,o.x,ground-(o.large?50:35)));}}
+    function endRun(won){running=false;gameOver=!won;cancelAnimationFrame(raf);if(!won){score=0;scoreEl.textContent='00000'}hint.textContent=won?'15개를 연속으로 피했습니다. 프로필을 불러옵니다.':'충돌! 연속 기록이 초기화됐어요. 다시 도전하세요.';draw();if(won)showAbout()}
+    function loop(){if(!running)return;frame++;if(frame>=nextObstacleFrame){obstacles.push({x:virtualWidth+8,large:Math.random()<.28,counted:false});nextObstacleFrame=frame+Math.max(72,124-score*2.8)+Math.random()*16}if(frame%230===0)clouds.push({x:virtualWidth+12,y:28+Math.random()*35});const speed=5.4+Math.min(score*.28,4.3);obstacles.forEach(o=>o.x-=speed);clouds.forEach(c=>c.x-=1);obstacles=obstacles.filter(o=>o.x>-60);clouds=clouds.filter(c=>c.x>-50);
+      if(playerY>0||velocity>0){playerY+=velocity;velocity-=.58;if(playerY<0){playerY=0;velocity=0}}
+      for(const o of obstacles){const width=o.large?25:17;if(o.x+width>57&&o.x<88&&playerY<26){endRun(false);return}if(!o.counted&&o.x+width<50){o.counted=true;score++;scoreEl.textContent=String(score).padStart(5,'0');if(score>=TARGET_SCORE){endRun(true);return}}}
+      draw();raf=requestAnimationFrame(loop)}
+    function start(){if(running||score>=TARGET_SCORE)return;running=true;gameOver=false;game.classList.add('active');document.querySelector('#dinoStart').style.display='none';frame=0;nextObstacleFrame=85+Math.random()*18;playerY=0;velocity=0;obstacles=[];clouds=[];scoreEl.textContent=String(score).padStart(5,'0');hint.textContent='스페이스바 또는 화면을 눌러 점프하세요';resize();loop()}
+    function jump(){if(!running){start();return}if(playerY===0)velocity=10}
+    canvas.addEventListener('pointerdown',jump);document.querySelector('#dinoStart').addEventListener('click',start);document.querySelector('#dinoStart').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();start()}});window.addEventListener('keydown',e=>{if(e.code==='Space'&&!document.querySelector('#about').contains(document.activeElement)){e.preventDefault();jump()}});window.addEventListener('resize',resize);resize();
+    function showAbout(){const section=document.querySelector('#about');document.body.classList.add('connected');section.classList.remove('hidden');document.querySelector('#toast').classList.add('show');section.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>document.querySelector('#toast').classList.remove('show'),2300)}
+    document.querySelector('#start').addEventListener('click',()=>{if(score>=TARGET_SCORE)return;if(!running&&score>0){score=0;scoreEl.textContent='00000';document.querySelector('#dinoStart').style.display='block';game.classList.remove('active')}start()});document.querySelector('#skip').addEventListener('click',showAbout);
+  </script>
+</body>
+</html>
