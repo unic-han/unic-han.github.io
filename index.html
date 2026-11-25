@@ -68,18 +68,29 @@
     const canvas=document.querySelector('#canvas'),ctx=canvas.getContext('2d'),scoreEl=document.querySelector('#score'),hint=document.querySelector('#gamehint'),game=document.querySelector('#game');
     const spriteSheet=new Image();let spriteReady=false;
     spriteSheet.onload=()=>{spriteReady=true;draw()};spriteSheet.src='100-offline-sprite.png';
+    class ObstacleQueue{
+      constructor(){this.items=[];this.head=0}
+      enqueue(item){this.items.push(item)}
+      dequeue(){if(this.isEmpty())return null;const item=this.items[this.head];this.items[this.head++]=null;if(this.head>32&&this.head*2>=this.items.length){this.items=this.items.slice(this.head);this.head=0}return item}
+      peek(){return this.isEmpty()?null:this.items[this.head]}
+      isEmpty(){return this.head>=this.items.length}
+      clear(){this.items=[];this.head=0}
+      forEach(callback){for(let i=this.head;i<this.items.length;i++)callback(this.items[i],i-this.head)}
+      *[Symbol.iterator](){for(let i=this.head;i<this.items.length;i++)yield this.items[i]}
+    }
+    const obstacles=new ObstacleQueue();
     const TARGET_SCORE=15;
-    let running=false,gameOver=false,frame=0,nextObstacleFrame=90,score=0,playerY=0,velocity=0,obstacles=[],clouds=[],raf=0;
+    let running=false,gameOver=false,frame=0,nextObstacleFrame=90,score=0,playerY=0,velocity=0,clouds=[],raf=0;
     const virtualWidth=600,virtualHeight=150;
     function resize(){const dpr=window.devicePixelRatio||1,rect=canvas.getBoundingClientRect();canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;const scale=rect.width/virtualWidth;ctx.setTransform(dpr*scale,0,0,dpr*scale,0,0);draw()}
     function blit(sx,sy,sw,sh,dx,dy,dw=sw,dh=sh){if(spriteReady)ctx.drawImage(spriteSheet,sx,sy,sw,sh,dx,dy,dw,dh)}
     function draw(){if(!canvas.clientWidth)return;const ground=140;ctx.clearRect(0,0,virtualWidth,virtualHeight);if(spriteReady){clouds.forEach(c=>blit(86,2,46,14,c.x,c.y));blit(2,54,600,12,0,127);const trexFrame=gameOver?220:(running?(Math.floor(frame/5)%2?88:132):(Math.floor(Date.now()/700)%2?44:0));blit(848+trexFrame,2,44,47,50,ground-47-playerY);obstacles.forEach(o=>blit(o.large?332:228,2,o.large?25:17,o.large?50:35,o.x,ground-(o.large?50:35)));}}
     function endRun(won){running=false;gameOver=!won;cancelAnimationFrame(raf);if(!won){score=0;scoreEl.textContent='00000'}hint.textContent=won?'15개를 연속으로 피했습니다. 프로필을 불러옵니다.':'충돌! 연속 기록이 초기화됐어요. 다시 도전하세요.';draw();if(won)showAbout()}
-    function loop(){if(!running)return;frame++;if(frame>=nextObstacleFrame){obstacles.push({x:virtualWidth+8,large:Math.random()<.28,counted:false});nextObstacleFrame=frame+Math.max(72,124-score*2.8)+Math.random()*16}if(frame%230===0)clouds.push({x:virtualWidth+12,y:28+Math.random()*35});const speed=5.4+Math.min(score*.28,4.3);obstacles.forEach(o=>o.x-=speed);clouds.forEach(c=>c.x-=1);obstacles=obstacles.filter(o=>o.x>-60);clouds=clouds.filter(c=>c.x>-50);
+    function loop(){if(!running)return;frame++;if(frame>=nextObstacleFrame){obstacles.enqueue({x:virtualWidth+8,large:Math.random()<.28,counted:false});nextObstacleFrame=frame+Math.max(72,124-score*2.8)+Math.random()*16}if(frame%230===0)clouds.push({x:virtualWidth+12,y:28+Math.random()*35});const speed=5.4+Math.min(score*.28,4.3);obstacles.forEach(o=>o.x-=speed);clouds.forEach(c=>c.x-=1);while(obstacles.peek()&&obstacles.peek().x<=-60)obstacles.dequeue();clouds=clouds.filter(c=>c.x>-50);
       if(playerY>0||velocity>0){playerY+=velocity;velocity-=.58;if(playerY<0){playerY=0;velocity=0}}
       for(const o of obstacles){const width=o.large?25:17;if(o.x+width>57&&o.x<88&&playerY<26){endRun(false);return}if(!o.counted&&o.x+width<50){o.counted=true;score++;scoreEl.textContent=String(score).padStart(5,'0');if(score>=TARGET_SCORE){endRun(true);return}}}
       draw();raf=requestAnimationFrame(loop)}
-    function start(){if(running||score>=TARGET_SCORE)return;running=true;gameOver=false;game.classList.add('active');document.querySelector('#dinoStart').style.display='none';frame=0;nextObstacleFrame=85+Math.random()*18;playerY=0;velocity=0;obstacles=[];clouds=[];scoreEl.textContent=String(score).padStart(5,'0');hint.textContent='스페이스바 또는 화면을 눌러 점프하세요';resize();loop()}
+    function start(){if(running||score>=TARGET_SCORE)return;running=true;gameOver=false;game.classList.add('active');document.querySelector('#dinoStart').style.display='none';frame=0;nextObstacleFrame=85+Math.random()*18;playerY=0;velocity=0;obstacles.clear();clouds=[];scoreEl.textContent=String(score).padStart(5,'0');hint.textContent='스페이스바 또는 화면을 눌러 점프하세요';resize();loop()}
     function jump(){if(!running){start();return}if(playerY===0)velocity=10}
     canvas.addEventListener('pointerdown',jump);document.querySelector('#dinoStart').addEventListener('click',start);document.querySelector('#dinoStart').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();start()}});window.addEventListener('keydown',e=>{if(e.code==='Space'&&!document.querySelector('#about').contains(document.activeElement)){e.preventDefault();jump()}});window.addEventListener('resize',resize);resize();
     function showAbout(){const section=document.querySelector('#about');document.body.classList.add('connected');section.classList.remove('hidden');document.querySelector('#toast').classList.add('show');section.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>document.querySelector('#toast').classList.remove('show'),2300)}
